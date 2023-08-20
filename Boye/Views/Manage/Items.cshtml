@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Boye.ModelHybrids.ItemHybrid>
+
+@{
+    ViewData["Title"] = "Items";
+}
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Shop Items</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <p>
+        <a class="btn_2" asp-action="Item">Add New Item</a>
+    </p>
+   <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="max-width: 125px">
+                        &nbsp;
+                    </th>
+                    <th style="min-width:150px;">
+                        Name
+                    </th>
+                    <th style="min-width:150px;">
+                        Category
+                    </th>
+                    <th style="min-width:150px;">
+                        Description
+                    </th>
+                    <th class="nowrap">
+                        Price (₦)
+                    </th>
+                    <th>
+                       Date
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.Image" style="width:70px" alt="item" >
+                        </td>
+                        <td>
+                            <a class="link-primary" asp-action="Item" asp-controller="Shop" asp-route-id="@item.ID">@item.Name</a>
+                        </td>
+                        <td>
+                            <a class="link-primary" asp-action="Item" asp-controller="Shop" asp-route-id="@item.ID">@item.Categ</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Desc)
+                        </td>
+                        <td>
+                            @item.Price.ToString("#.##")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td class="nowrap">
+                            @*<a asp-action="Edit" class="link-primary" asp-route-id="@item.ID">Edit</a> |*@
+                            <a class="link-primary" onclick="alert('Upgrade Required')" >Edit</a> |
+                            <a asp-action="ItemDelete" class="link-danger" asp-route-id="@item.ID" onclick="return(confirm('This process is not reversible\nProceed to delete?'))">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+   </div>
+</div>

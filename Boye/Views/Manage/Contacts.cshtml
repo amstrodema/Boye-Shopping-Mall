@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Boye.Models.Contact>
+
+@{
+    ViewData["Title"] = "Contacts";
+}
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Contacts</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="table-responsive">
+    <table class="table">
+    <thead>
+        <tr>
+            <th style="min-width: 100px">
+                Subject / Email 
+            </th>
+            <th  style="min-width: 150px">
+                Message
+            </th>
+            <th class="nowrap">
+              Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject) <br>
+                            @Html.DisplayFor(modelItem => item.Name) <br>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Message)
+                        </td>
+                        <td>
+                            @item.DateCreated
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+    </tbody>
+</table>
+</div>
+
+</div>

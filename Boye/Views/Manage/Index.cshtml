@@ -1,0 +1,52 @@
+﻿@inject IHttpContextAccessor context
+@{
+    ViewData["Title"] = "Manager";
+}
+
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Manager</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <hr />
+    <a asp-action="Categories" class="btn btn-primary top-space col-md-3 col-12">
+        <i class="ti-file"></i> 
+        <span>Categories</span>
+    </a>
+    <a asp-action="Items" class="btn btn-primary top-space col-md-3 col-12">
+        <i class="ti-gallery"></i> 
+        <span>Items</span>
+    </a>
+    <a class="btn btn-primary top-space col-md-3 col-12" onclick="alert('Upgrade Required')">
+        <i class="ti-shopping-cart-full"></i>
+        <span>Orders</span>
+    </a>
+    <a asp-action="Contacts" class="btn btn-primary top-space col-md-3 col-12">
+        <i class="ti-mobile"></i>
+        <span>Contacts</span>
+    </a>
+    @if (context.HttpContext.Session.GetString("isDev") != null)
+    {
+        <a asp-action="CreateSitemapInRootDirectory" asp-controller="Home" class="btn btn-primary top-space col-md-3 col-12">
+            <i class="ti-mobile"></i>
+            <span>SiteMap</span>
+        </a>
+    }
+   
+    <a asp-action="LogOut" class="btn btn-primary top-space col-md-3 col-12">
+        <i class="ti-lock"></i>
+        <span>Log Out</span>
+    </a>
+
+    <hr />
+</div>

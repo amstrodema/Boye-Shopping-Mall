@@ -1,0 +1,79 @@
+/*html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}*/
+.product-caption h3 a{
+    font-size: 0.9em !important
+}
+
+.top-space{
+    border-bottom: solid 0.3em white;
+    border-top: solid 0.3em white;
+}
+.itemBgImg {
+    /*background-image: url(../assets/img/gallery/gallery2.jpg) !important;*/
+    background-color: black;
+}
+.categBgImg {
+    /*background-image: url(../assets/img/gallery/gallery2.jpg) !important;*/
+    background-color: black;
+}
+.loginBgImg {
+    /*background-image: url(../img/blog1.png) !important;*/
+    background-color: black;
+}
+.link-primary{
+    color: blue !important;
+}
+.link-danger{
+    color: red !important;
+}
+.link-dark{
+    color: black !important;
+}
+.link-warning{
+    color: orange !important;
+}
+.nowrap{
+    white-space:nowrap;
+}
+.brandName{
+    color: red;
+    font-size:1.2em;
+    font-weight:bold;
+}
+.brandName:hover{
+    color: red !important;
+}
+.brandName span{
+    color: black
+}
+.itemName {
+    font-size: 0.1em !important
+}
+.popular-caption h3 a {
+    color: darkblue !important;
+    font-size: 15px !important
+}
+.popular-caption h3 a:hover {
+    color: blue !important;
+    font-size: 15px !important
+}
+.popular-caption span {
+    font-size: 12px !important;
+    font-weight:bold !important;
+}

@@ -1,0 +1,39 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Thank You";
+}
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Thank You!</h2>
+                        <input type="text" id="process" value="@Model" hidden />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="checkout_btn_inner float-right nowrap table-responsive">
+        <a class="btn_1 btn" asp-action="Index" asp-controller="Shop">Continue Shopping</a>
+        <a class="btn_1 btn" asp-action="Cart" asp-controller="Shop">Back To Cart</a>
+        <a class="btn_1 btn checkout_btn_1" asp-action="ClearCart" asp-controller="Shop">Clear Cart</a>
+    </div>
+</div>
+<script>
+    var process = document.getElementById('process');
+    Finish(process.value);
+    function Finish(message) {
+
+        let number = "+2348060473710";
+        //let number = "+2348137395582";
+        let url = "https://wa.me/";
+        let end_url = `${url}${number}?text=${message}`;
+
+        window.open(end_url);
+
+    }
+</script>

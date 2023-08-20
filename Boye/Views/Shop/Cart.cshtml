@@ -1,0 +1,165 @@
+﻿@model IEnumerable<Boye.ModelViews.CartHolder>
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Cart</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================Cart Area =================-->
+<section class="cart_area section_padding">
+    <div class="container">
+        <div class="cart_inner">
+
+            @if (Model.Count() < 1)
+            {
+                <div class="col-md-12 text-center">
+                    No Item Found
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="min-width:120px">Product</th>
+                                <th scope="col" class="nowrap">Price (₦)</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col" class="nowrap">Sub-Total (₦)</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var lblID = item.ID + "lbl";
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="@item.Image" alt="" />
+                                            </div>
+                                            <div class="media-body">
+                                                <p><a asp-action="Item" asp-controller="Shop" class="link-primary" asp-route-id="@item.ID">@item.Item</a></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>@item.Price.ToString("#.##")</h5>
+                                    </td>
+                                    <td>
+                                        <div class="nowrap">
+                                            <span class="input-number-decrement" onclick="CartItemDown('@item.ID', @item.Price, '@lblID')"> <i class="ti-minus"></i></span>
+                                            <input style="text-align:center; border:none" type="number" id="@item.ID" value="@item.Qty" min="1" max="1000" readonly>
+                                            <span class="input-number-increment" onclick="CartItemUp('@item.ID', @item.Price,'@lblID')"> <i class="ti-plus"></i></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5 id="@lblID">@item.Cost.ToString("#.##")</h5>
+                                    </td>
+                                    <td>
+                                        <a asp-action="RemoveItem" onclick="return(confirm('Proceed to remove from cart?'))" asp-route-id="@item.ID"><i class="ti-trash link-danger"></i></a>
+                                        
+                                    </td>
+                                </tr>
+
+                            }
+                            @*  <tr class="bottom_button">
+                        <td>
+                        <a class="btn_1" href="#">Update Cart</a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        <div class="cupon_text float-right">
+                        <a class="btn_1" href="#">Close Coupon</a>
+                        </div>
+                        </td>
+                        </tr>*@
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>Total</h5>
+                                </td>
+                                <td colspan="2">
+                                    <h5>₦<span id="cartTotalVal">@Model.Sum(s=> s.Cost).ToString("#.##")</span></h5>
+                                </td>
+                            </tr>
+                            @*<tr class="shipping_area">
+                        <td></td>
+                        <td></td>
+                        <td>
+                        <h5>Shipping</h5>
+                        </td>
+                        <td>
+                        <div class="shipping_box">
+                        <ul class="list">
+                        <li>
+                        Flat Rate: $5.00
+                        <input type="radio" aria-label="Radio button for following text input">
+                        </li>
+                        <li>
+                        Free Shipping
+                        <input type="radio" aria-label="Radio button for following text input">
+                        </li>
+                        <li>
+                        Flat Rate: $10.00
+                        <input type="radio" aria-label="Radio button for following text input">
+                        </li>
+                        <li class="active">
+                        Local Delivery: $2.00
+                        <input type="radio" aria-label="Radio button for following text input">
+                        </li>
+                        </ul>
+                        <h6>
+                        Calculate Shipping
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </h6>
+                        <select class="shipping_select">
+                        <option value="1">Bangladesh</option>
+                        <option value="2">India</option>
+                        <option value="4">Pakistan</option>
+                        </select>
+                        <select class="shipping_select section_bg">
+                        <option value="1">Select a State</option>
+                        <option value="2">Select a State</option>
+                        <option value="4">Select a State</option>
+                        </select>
+                        <input class="post_code" type="text" placeholder="Postcode/Zipcode" />
+                        <a class="btn_1" href="#">Update Details</a>
+                        </div>
+                        </td>
+                        </tr>
+                        *@
+                        <tr>
+                            <td colspan="5" class="nowrap">
+                                    <div class="checkout_btn_inner float-right">
+                                        <a class="btn_1 btn" asp-action="Cart" asp-controller="Shop">Refresh</a>
+                                        <a class="btn_1 btn" asp-action="Index" asp-controller="Shop">Continue Shopping</a>
+                                        <a class="btn_1 btn checkout_btn_1" asp-action="CheckOut" asp-controller="Shop">checkout</a>
+                                    </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                   
+                </div>
+            }
+           
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->

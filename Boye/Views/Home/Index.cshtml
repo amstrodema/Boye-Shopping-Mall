@@ -1,0 +1,188 @@
+﻿@model Boye.ModelViews.HomeVM
+@{
+    ViewData["Title"] = "HOME";
+    ViewData["canonical"] = "https://www.boyeshoppingmall.com.ng/";
+    ViewData["desc"] = "Shop a wide range of products at Boye Shopping Mall, the leading online multipurpose store in Nigeria. Find everything from electronics, fashion, home decor, and more. Enjoy fast shipping and excellent customer service.";
+}
+
+ 
+        <!--? slider Area Start -->
+        <div class="slider-area ">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Select Your New Perfect Style</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">
+                                Embrace the Power of Versatility and Elevate Your Shopping Experience to New Heights.</p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
+                                <a asp-action="index" asp-controller="shop" class="btn hero-btn">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                            <img src="assets/img/hero/blender.png" alt="" class=" heartbeat">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                            <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">A Haven for All Your Desires</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">
+                                Experience the Ultimate Convenience of One Store, where Countless Solutions Await.</p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
+                                        <a asp-action="index" asp-controller="shop" class="btn hero-btn">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                                    <img src="assets/img/hero/watch.png" alt="" class=" heartbeat">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+        <!-- ? New Product Start -->
+<section class="popular-items section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-tittle mb-70">
+                            <h2>New Arrivals</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+           @if (Model.NewArrivals.Count() < 1)
+            {
+                <p class="col-md-12">
+                    No new arrivals yet
+                </p>
+            }
+            @foreach (var item in Model.NewArrivals)
+            {
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+                    <div class="single-popular-items mb-50 text-center">
+                        <div class="popular-img" style="height:170px">
+                            <img src="@item.Image" alt="">
+                            <div class="img-cap">
+                                <span onclick="printCart('@item.ID')">Add to cart</span>
+                            </div>
+                        @*    <div class="favorit-items">
+                                <span class="flaticon-heart"></span>
+                            </div>*@
+                        </div>
+                        <div class="popular-caption">
+                            <h3 class="itemName"><a asp-action="item" asp-controller="shop" asp-route-id="@item.ID">@item.Name</a></h3>
+                            <span>₦@item.Price.ToString("#.##")</span>
+                        </div>
+                    </div>
+                </div>
+            }
+                </div>
+            </div>
+        </section>
+        <!--  New Product End -->
+        <!--? Gallery Area Start -->
+        <div class="gallery-area">
+            <div class="container-fluid p-0 fix">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-gallery mb-30">
+                            <div class="gallery-img big-img" style="background-image: url(../img/img7.jpg);"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-gallery mb-30">
+                    <div class="gallery-img big-img" style="background-image: url(../img/img3.jpg);"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6">
+                                <div class="single-gallery mb-30">
+                            <div class="gallery-img small-img" style="background-image: url(../img/img1.jpg);"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12  col-md-6 col-sm-6">
+                                <div class="single-gallery mb-30">
+                            <div class="gallery-img small-img" style="background-image: url(../img/img2.jpg);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Gallery Area End -->
+        <!--? Popular Items Start -->
+        <div class="popular-items section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8 col-md-10">
+                        <div class="section-tittle mb-70 text-center">
+                            <h2>Popular Items</h2>
+                            <p>
+                        Discover the sensational world of our popular items corner, where extraordinary meets everyday. Uncover the hottest, most coveted products that will ignite your passion and leave you craving for more.
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (Model.PopularItems.Count() < 1)
+            {
+                <p class="col-md-12">
+                    No popular items yet
+                    </p>
+                    }
+            @foreach (var item in Model.PopularItems)
+            {
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+                    <div class="single-popular-items mb-50 text-center">
+                        <div class="popular-img" style="height:170px">
+                            <img src="@item.Image" alt="">
+                            <div class="img-cap">
+                                <span onclick="printCart('@item.ID')">Add to cart</span>
+                            </div>
+                            @*    <div class="favorit-items">
+                        <span class="flaticon-heart"></span>
+                        </div>*@
+                        </div>
+                        <div class="popular-caption">
+                            <h3><a asp-action="item" asp-controller="shop" asp-route-id="@item.ID">@item.Name</a></h3>
+                            <span>₦@item.Price.ToString("#.##")</span>
+                        </div>
+                    </div>
+                </div>
+            }
+                </div>
+                <!-- Button -->
+                <div class="row justify-content-center">
+                    <div class="room-btn pt-70">
+                        <a asp-action="Index" asp-controller="Shop" class="btn view-btn1">View More Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Popular Items End -->
+   
+  

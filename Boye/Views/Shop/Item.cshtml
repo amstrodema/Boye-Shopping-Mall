@@ -1,0 +1,71 @@
+﻿@model Boye.Models.Item
+@{
+    ViewData["Title"] = Model.Name;
+    decimal total = Model.Price * Model.Qty;
+    ViewData["canonical"] = "https://www.boyeshoppingmall.com.ng/shop/item/"+Model.ID;
+    ViewData["desc"] = Model.Desc;
+}
+
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Area End-->
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="product_img_slide owl-carousel">
+                        <div class="single_product_img">
+                            <img src="@Model.Image" alt="#" class="img-fluid">
+                        </div>
+                     @*   <div class="single_product_img">
+                            <img src="assets/img/gallery/gallery01.png" alt="#" class="img-fluid">
+                        </div>
+                        <div class="single_product_img">
+                            <img src="assets/img/gallery/gallery1.png" alt="#" class="img-fluid">
+                        </div>*@
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="single_product_text text-center">
+                        <h3>
+                            @Model.Name
+                        </h3>
+                        <p>
+                        @Model.Desc
+                        </p>
+                    <p>₦@Model.Price.ToString("#.##")</p>
+                        <div class="card_area">
+                            <div class="product_count_area">
+                                <p>Quantity</p>
+                                <div class="product_count d-inline-block">
+                                <span class="product_count_item inumber-decrement" onclick="ItemDown('@Model.ID', @Model.Price)"> <i class="ti-minus"></i></span>
+                                <input class="product_count_item input-number" type="text" id="itemDisQty" value="@Model.Qty" min="0" max="1000" readonly>
+                                <span class="product_count_item number-increment" onclick="ItemUp('@Model.ID', @Model.Price)"> <i class="ti-plus"></i></span>
+                                </div>
+                            <p>₦<span id="itemTotalLabel">@total.ToString("#.##")</span></p>
+                            </div>
+                            <div class="add_to_cart">
+                                <a asp-action="Cart" asp-controller="Shop" class="btn_3">View cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================End Single Product Area =================-->
+
+

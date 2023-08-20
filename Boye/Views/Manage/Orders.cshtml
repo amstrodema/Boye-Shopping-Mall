@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Boye.ModelHybrids.OrderHybrid>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Orders</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+   <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="min-width:80px">
+                      Buyer Details
+                    </th>
+                    <th>
+                        Order Details
+                    </th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>
+                            @order.BuyerName <br>
+                            @order.BuyerPhone <br>
+                            @order.BuyerAddress <br>
+                            @order.BuyerEmail
+                        </td>
+                        <td style="min-width:200px">
+                            <table class="table">
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@item.Image" alt="image">
+                                        </td>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>
+                                            @item.Qty.ToString("#.###")
+                                        </td>
+                                        <td>
+                                            @item.Price.ToString("#.##")
+                                        </td>
+                                        <td>
+                                            @item.Cost.ToString("#.##")
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>                    
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@order.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+   </div>
+</div>
+
